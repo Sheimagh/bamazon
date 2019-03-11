@@ -37,3 +37,5 @@ The app will take in orders from customers and deplete stock from the store's in
 8. However, if your store _does_ have enough of the product, you should fulfill the customer's order.
    * This means updating the SQL database to reflect the remaining quantity.
    * Once the update goes through, show the customer the total cost of their purchase.
+   
+![bamazon-Products2](https://user-images.githubusercontent.com/44955946/54164128-865b7780-4429-11e9-89cf-7f4882d1c4ed.gif)
