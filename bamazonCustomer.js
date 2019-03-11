@@ -1,4 +1,4 @@
-//For this HW I used 12.2-10-GreatBay as reference 
+//For this HW I used 12.2-10-GreatBay as reference
 
 //Packages
 var mysql = require("mysql");
@@ -33,9 +33,9 @@ function readProducts() {
     if (err) throw err;
     // print the result
     console.log(res);
-    // This is more like global scope, "start" will prompt the customers with two messages, call start after readProducts function ends 
+    // This is more like global scope, "start" will prompt the customers with two messages, call start after readProducts function ends
     start();
-    connection.end();
+    //  connection.end(); ONCE A QUERY IS MADE, DONT END CONNECTION UNTIL YOU'RE FINISHED ACCESSING THE DB THROUGH THE ENTIRE QUERY CYCLE (END OF PAGE)
   });
 }
 //this function will prompt users with two messages
@@ -52,12 +52,34 @@ function start() {
       message: "How many units of the product you would like to buy?"
 
     }])
-    //start of no 7 & 8
     .then(function (value) {
-      // select id products
-      console.log(value)
-      //call the database to check the quantity
-      //compare, available quantity to customers request
-      //complete purchase if right there is enough quantity, total cost of purchase and update the database
-      //include not having enough quantity
-  
+      var newQuery = "SELECT * FROM products WHERE id =" + value.products; //requesting specific product data using the return from "products" prompt
+      connection.query(newQuery, function (err, res) {
+        //if (value.quantity <= res) {
+
+        //looping through the specific product data returned
+
+        for (var i = 0; i < res.length; i++) {
+
+          //first checking whether there is any inventory and console logging if not
+
+          if (res[i].stock_quantity === 0) {
+            console.log("Sorry, but not enough of this product in stock.");
+          }
+
+          //Second, checking whether the requested amount is above what is currently in stock
+
+          else if (value.quantity > res[i].stock_quantity) {
+            console.log("We currently only have " + res[i].stock_quantity + " " + res[i].product_name + ".");
+          }
+
+          //third, checking for whether the requested amount is below or equal to current inventory, creating a successful order- this should also include final price as well
+          else if (value.quantity <= res[i].stock_quantity) {
+            console.log("Thank you for your order! Your order of " + value.quantity + " " + res[i].product_name + " is now being processed.");
+          }
+        }
+
+      })
+      connection.end();
+    })
+};
