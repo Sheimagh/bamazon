@@ -26,7 +26,8 @@ The app will take in orders from customers and deplete stock from the store's in
 
    * The first should ask them the ID of the product they would like to buy.
    * The second message should ask how many units of the product they would like to buy.
-   
+ 
+![Image alt text](/_Images/bamazon-Products.gif)
 [[ https://github.com/Sheimagh/bamazon/tree/master/Images/bamazon-Products.gif ]]
 
 
