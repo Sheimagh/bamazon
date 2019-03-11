@@ -28,7 +28,7 @@ The app will take in orders from customers and deplete stock from the store's in
    * The second message should ask how many units of the product they would like to buy.
    
 
-[<img src="assets/Images/bamazon-Products.gif">]
+![Alt Text](https://github.com/Sheimagh/bamazon/tree/master/Images/bamazon-Products.gif)
 
 7. Once the customer has placed the order, your application should check if your store has enough of the product to meet the customer's request.
 
